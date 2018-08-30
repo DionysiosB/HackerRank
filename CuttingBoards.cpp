@@ -2,30 +2,32 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+typedef long long ll;
 
 
 int main(){
     
-    int numCases(0); scanf("%d", &numCases);
-    while(numCases--){
+    const ll MOD = 1e9 + 7;
+    int q(0); scanf("%d", &q);
+    while(q--){
 
         long M(0), N(0); scanf("%ld %ld", &M, &N);
-        std::vector<std::pair<long long,char>> cost(M + N - 2, std::pair<long long, char>(0,'a'));
+        std::vector<std::pair<ll,char>> cost(M + N - 2, std::pair<ll, char>(0,'a'));
 
         long temp(0);
-        for(long long k = 0; k < M + N - 2; k++){scanf("%ld", &temp); cost[k] = std::pair<long long,char>(temp, ((k < M - 1) ? 'x' : 'y'));}
+        for(ll k = 0; k < M + N - 2; k++){scanf("%ld", &temp); cost[k] = std::pair<ll,char>(temp, ((k < M - 1) ? 'x' : 'y'));}
         std::sort(cost.begin(), cost.end());
 
-        long long totalCost = 0; 
-        long long xCuts(1), yCuts(1);
+        ll total = 0; 
+        ll xCuts(1), yCuts(1);
 
-        for(long long k = M + N - 3; k >= 0; k--){
-            if(cost[k].second == 'x'){totalCost += yCuts * cost[k].first; ++xCuts;}
-            else if(cost[k].second == 'y'){totalCost += xCuts * cost[k].first; ++yCuts;}
+        for(ll k = M + N - 3; k >= 0; k--){
+            if(cost[k].second == 'x'){total += yCuts * cost[k].first; ++xCuts;}
+            else if(cost[k].second == 'y'){total += xCuts * cost[k].first; ++yCuts;}
+            total %= MOD;
         }
 
-        printf("%lld\n", totalCost);
-
+        printf("%lld\n", total);
     }
 
     return 0;
