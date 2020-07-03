@@ -25,14 +25,10 @@ int main() {
         second = temp;
     }
 
-
-    for(int k = 0; k < fibSeries.size(); k++){printf("%lld\n", fibSeries[k]);}
-        
-    
     for(long k = 0; k < T; k++){
         for(int m = 0; m < fibSeries.size(); m++){
-            if(input[k] == fibSeries[m]){puts("IsFibo"); printf("%lld %lld\n", input[k], fibSeries[m]); break;}
-            else if(input[k] < fibSeries[m]){puts("IsNotFibo"); printf("%lld %lld\n", input[k], fibSeries[m]); break;}
+            if(input[k] == fibSeries[m]){puts("IsFibo"); break;}
+            else if(input[k] < fibSeries[m]){puts("IsNotFibo"); break;}
         }
     }
     
